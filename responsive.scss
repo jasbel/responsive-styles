@@ -87,9 +87,9 @@ $property-map: (
   bz: background-size,
 );
 
+/// Schema
 /// calc( #{$min-px} + (#{$max} - #{$min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
-/// calc( 16px + (21px - 16px) * ((100vw - 360px) / (1440px - 360px)));
-/// calc( 16px + (21 - 16) * ((100vw - 360px) / (1440px - 360)));
+/// calc( 16px + (21 - 16) * ((100vw - 360px) / (1440 - 360)));
 
 /// Function Responsive ---------------\\
 /// How use: padding-left: responsive($pl-max, $pl-min, $w-max, $w-min) ;
