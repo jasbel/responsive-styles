@@ -129,3 +129,5 @@ Aqui les dejo la implementacion de mi codigo `npm i @jasbel/responsive` por si q
 Espero que les sirva y dime, como podria mejorarlo aun mas.
 
 Actualmente estoy entrando mas a profundidad con los frameworks, y siempre me anda picando el bicho diciendome que: "Oye chaval, tambien puede meterle esto de tu responsive a react.js, react-native, Next, integrarlo con MUI, Chackra UI y seguramente con Tailwind y lo que venga XD, a poco tienes miedo por desconocer a profundidad de estas tecnologias"
+
+ver https://replit.com/join/qjznvfaoyp-jasbel1
