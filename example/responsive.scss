@@ -1,0 +1,20 @@
+
+@import '../scss/responsive';
+// myStyle.scss
+h1 {
+  @include responsive(fz, 50, 40);
+}
+
+h2 {
+  @include responsive(fz, 40, 30);
+}
+
+.miTexto {
+  @include responsive(fz, 28, 16);
+}
+
+.miCaja {
+  @include responsive(w, 500, 50);
+  @include responsive(h, 500, 50);
+  background-color: blue;
+}

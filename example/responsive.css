@@ -1,0 +1,83 @@
+h1 {
+  /* TODO: Verificar que no crea */
+  font-size: 50px;
+}
+
+@media (max-width: 1440px) {
+  h1 {
+    font-size: calc(40px + (50 - 40) * ((100vw - 360px) / (1440 - 360)));
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 40px;
+  }
+}
+
+h2 {
+  /* TODO: Verificar que no crea */
+  font-size: 40px;
+}
+
+@media (max-width: 1440px) {
+  h2 {
+    font-size: calc(30px + (40 - 30) * ((100vw - 360px) / (1440 - 360)));
+  }
+}
+
+@media (max-width: 360px) {
+  h2 {
+    font-size: 30px;
+  }
+}
+
+.miTexto {
+  /* TODO: Verificar que no crea */
+  font-size: 28px;
+}
+
+@media (max-width: 1440px) {
+  .miTexto {
+    font-size: calc(16px + (28 - 16) * ((100vw - 360px) / (1440 - 360)));
+  }
+}
+
+@media (max-width: 360px) {
+  .miTexto {
+    font-size: 16px;
+  }
+}
+
+.miCaja {
+  /* TODO: Verificar que no crea */
+  width: 500px;
+  /* TODO: Verificar que no crea */
+  height: 500px;
+  background-color: blue;
+}
+
+@media (max-width: 1440px) {
+  .miCaja {
+    width: calc(50px + (500 - 50) * ((100vw - 360px) / (1440 - 360)));
+  }
+}
+
+@media (max-width: 360px) {
+  .miCaja {
+    width: 50px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .miCaja {
+    height: calc(50px + (500 - 50) * ((100vw - 360px) / (1440 - 360)));
+  }
+}
+
+@media (max-width: 360px) {
+  .miCaja {
+    height: 50px;
+  }
+}
+/*# sourceMappingURL=responsive.css.map */

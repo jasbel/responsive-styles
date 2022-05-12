@@ -93,13 +93,13 @@ $property-map: (
 
 /// Function Responsive ---------------\\
 /// How use: padding-left: responsive($pl-max, $pl-min, $w-max, $w-min) ;
-@function responsive($max, $min: "", $w-max: $desktop-responsive, $w-min: $phone-responsive ) {
-  @if( $min == "" or $max == $min) {
-      @return $max + px;
+@function responsive($max, $min: "", $w-max: $desktop-responsive, $w-min: $phone-responsive) {
+  @if ($min == "" or $max == $min) {
+    @return $max + px;
   }
   $min-px: $min + px;
   $w-min-px: $w-min + px;
-  $result: calc( #{$min-px} + (#{$max} - #{$min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
+  $result: calc(#{$min-px} + (#{$max} - #{$min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
   @return $result;
 }
 
@@ -107,12 +107,7 @@ $property-map: (
 
 //How to use:   @include  font-responsive(26, 20) or font-responsive(26, 20, 1440, 360)
 // font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300))) ;
-@mixin font-responsive(
-  $f-max,
-  $f-min: $font-size-small,
-  $w-max: $desktop-responsive,
-  $w-min: $phone-responsive
-) {
+@mixin font-responsive($f-max, $f-min: $font-size-small, $w-max: $desktop-responsive, $w-min: $phone-responsive) {
   $f-min-px: $f-min + px;
   $w-min-px: $w-min + px;
   $font-size: $f-max + px;
@@ -184,10 +179,7 @@ $property-map: (
   $desktop-px: $desktop-responsive * 1px;
   $phone-px: $phone-responsive * 1px;
 
-  $responsive-calc: calc(
-    #{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) /
-          (#{$w-max} - #{$w-min}))
-  );
+  $responsive-calc: calc(#{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
 
   $property: "";
 
@@ -255,10 +247,7 @@ $property-map: (
   $desktop-px: $desktop-responsive * 1px;
   $phone-px: $phone-responsive * 1px;
 
-  $responsive-calc: calc(
-    #{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) /
-          (#{$w-max} - #{$w-min}))
-  );
+  $responsive-calc: calc(#{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
 
   $property: "";
 
