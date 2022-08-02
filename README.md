@@ -103,6 +103,7 @@ body {
 
 ## API
 
+```scss
 @include responsive(fz, 100, 30);
 @include mq(fz, 60, 1440);
 @include font-responsive(26, 20, 1440, 360);
@@ -111,8 +112,9 @@ body {
 @include padding-responsive(...);
 @include margin-responsive(...);
 
-padding-left: responsive($pl-max, $pl-min, $w-max, $w-min)
-...
+padding-left: responsive($pl-max, $pl-min, $w-max, $w-min);
+
+```
 
 ## Browser Support
 
