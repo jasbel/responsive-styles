@@ -38,7 +38,7 @@ $ npm i -D @jasbel/responsive
 install compiler sass and import file scss main:
 
 ```scss
-@import "./node_modules/@jasbel/responsive/scss/responsive.scss";
+@import "@jasbel/responsive/scss/responsive.scss";
 
 ...
 ```
@@ -71,7 +71,7 @@ Simple Example
 `main.scss`
 
 ```scss
-@import "./node_modules/@jasbel/responsive/scss/responsive.scss";
+@import "@jasbel/responsive/scss/responsive.scss";
 
 html,
 body {
@@ -103,6 +103,15 @@ body {
 
 ## API
 
+@include responsive(fz, 100, 30);
+@include mq(fz, 60, 1440);
+@include font-responsive(26, 20, 1440, 360);
+@include font-responsive(26, 20);
+@include responsive-mq(fz, 60, 39, 1440);
+@include padding-responsive(...);
+@include margin-responsive(...);
+
+padding-left: responsive($pl-max, $pl-min, $w-max, $w-min)
 ...
 
 ## Browser Support
