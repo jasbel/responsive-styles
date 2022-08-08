@@ -1,5 +1,9 @@
 # @jasbel/responsive [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
+<p align="center">
+    <img src ="https://github.com/jasbel/responsive-styles/blob/master/public/static/responsive.gif" />
+</p>
+
 ## Information
 
 <table>
@@ -45,7 +49,82 @@ install compiler sass and import file scss main:
 
 ### With HTML and SCSS
 
-Simple Example
+### Example:
+`index.html`
+
+```html
+<body>
+  <h1>Title</h1>
+  <h1 class="myTitle">Title Responsive</h1>
+  <h2>Subtitle</h2>
+  <h2 class="mySubtitle">Subtitle</h2>
+  <p class="myText">Text Responsive </p>
+
+  <div style="display: flex;">
+    <div class="myBoxNoResponsive">My Box No Responsive</div>
+    <div class="myBox">My Box</div>
+    <div class="myBox2">My Box2</div>
+  </div>
+</body>
+```
+
+```scss
+// @import "@jasbel/responsive/scss/responsive.scss";
+@import "@jasbel/responsive/index.scss";
+
+h1 {
+  font-size: 50px;
+  @include mq(fz, 50, $desktop-responsive);
+  @include mq(fz, 30, $phone-responsive);
+}
+
+h2 {
+  font-size: 40px;
+  @include mq(fz, 40, $desktop-responsive);
+  @include mq(fz, 20, $phone-responsive);
+}
+
+.myTitle {
+  @include responsive(fz, 50, 30);
+}
+
+.mySubtitle {
+  @include responsive(fz, 40, 20);
+}
+
+.myText {
+  @include responsive(fz, 28, 16);
+}
+
+.myBoxNoResponsive {
+  display: block;
+  width: 300px;
+  height: 300px;
+  @include mq(w, 300, $desktop-responsive);
+  @include mq(w, 150, $tablet-responsive);
+  @include mq(w, 80, $phone-responsive);
+  @include mq(h, 300, $desktop-responsive);
+  @include mq(h, 150, $tablet-responsive);
+  @include mq(h, 80, $phone-responsive);
+  background-color: violet;
+}
+
+.myBox {
+  display: block;
+  @include responsive(w, 300, 80);
+  @include responsive(h, 300, 80);
+  background-color: yellow;
+}
+
+.myBox2 {
+  display: block;
+  @include r(w, 80, 300);
+  @include r(h, 80, 300);
+  background-color: rgb(155, 255, 128);
+}
+```
+
+### Simple Example
 
 `index.html`
 

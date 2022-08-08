@@ -35,14 +35,20 @@ $desktop-responsive: $xxl;
 //For Media Query block
 $dd: 0.02; //diference
 $phone-x-small: $xxs + px;
-$phone-small: ($xs - $dd) + px;
-$phone: ($sm - $dd) + px;
-$phone-large: ($md - $dd) + px;
+$phone-small: (
+  $xs - $dd) + px;
+$phone: (
+  $sm - $dd) + px;
+$phone-large: (
+  $md - $dd) + px;
 $tablet-small: 790px;
-$tablet: ($lg - $dd) + px;
+$tablet: (
+  $lg - $dd) + px;
 $desktop-small: 1090px;
-$desktop: ($xl - $dd) + px;
-$desktop-medium: ($xxl - $dd) + px;
+$desktop: (
+  $xl - $dd) + px;
+$desktop-medium: (
+  $xxl - $dd) + px;
 $desktop-large: 1650px;
 $desktop-x-large: 1950px;
 
@@ -87,6 +93,7 @@ $property-map: (
   bz: background-size,
 );
 
+
 /// Schema
 /// calc( #{$min-px} + (#{$max} - #{$min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
 /// calc( 16px + (21 - 16) * ((100vw - 360px) / (1440 - 360)));
@@ -94,9 +101,10 @@ $property-map: (
 /// Function Responsive ---------------\\
 /// How use: padding-left: responsive($pl-max, $pl-min, $w-max, $w-min) ;
 @function responsive($max, $min: "", $w-max: $desktop-responsive, $w-min: $phone-responsive) {
-  @if ($min == "" or $max == $min) {
-    @return $max + px;
+  @if ($min =="" or $max ==$min) {
+    @return $max +px;
   }
+
   $min-px: $min + px;
   $w-min-px: $w-min + px;
   $result: calc(#{$min-px} + (#{$max} - #{$min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
@@ -108,9 +116,9 @@ $property-map: (
 //How to use:   @include  font-responsive(26, 20) or font-responsive(26, 20, 1440, 360)
 // font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300))) ;
 @mixin font-responsive($f-max, $f-min: $font-size-small, $w-max: $desktop-responsive, $w-min: $phone-responsive) {
-  $f-min-px: $f-min + px;
-  $w-min-px: $w-min + px;
-  $font-size: $f-max + px;
+  $f-min-px: $f-min +px;
+  $w-min-px: $w-min +px;
+  $font-size: $f-max +px;
   $desktop-px: $desktop-responsive * 1px;
   $phone-px: $phone-responsive * 1px;
 
@@ -118,19 +126,23 @@ $property-map: (
 
   font-size: $font-size;
 
-  @if ($w-max == $desktop-responsive and $w-min == $phone-responsive) {
+  @if ($w-max ==$desktop-responsive and $w-min ==$phone-responsive) {
     @media (max-width: $desktop-px) {
       & {
         font-size: $result-calc;
       }
     }
+
     @media (max-width: $phone-px) {
       & {
         font-size: #{$f-min-px};
       }
     }
-  } @else {
+  }
+
+  @else {
     font-size: $result-calc;
+
     @media (max-width: $w-min-px) {
       & {
         font-size: #{$f-min-px};
@@ -141,51 +153,125 @@ $property-map: (
 
 // How to use:   @include responsive(font-size, 60, 39, 1440, 375) or  @include  responsive(fz, 60, 39, 1440, 375) or  @include  responsive(fz, 60px, 39px, 1440, 375, false)
 // @include responsive(h, 66.11, 30);
-@mixin responsive(
-  $attr: "",
-  $size-max: "",
-  $size-min: "",
-  $w-max: $desktop-responsive,
+@mixin r($attr: "",
+  $value-min: "",
+  $value-max: "",
   $w-min: $phone-responsive,
-  $only-med-query: false
-) {
+  $w-max: $desktop-responsive,
+  $only-med-query: false) {
+  @if $w-min == "" {
+    $w-min: $phone-responsive;
+  }
+
   @if $w-max == "" {
     $w-max: $desktop-responsive;
   }
 
-  @if $size-min == "" {
-    $size-min: $size-max;
+  @if $value-max =="" {
+    $size-max: $value-min;
   }
 
   //conditional if attributes exist px
-  /* TODO: Verificar que no crea */
-  @if str-index(#{$size-max}, "px") != null {
-    $size-max: str-slice(#{$size-max}, 1, str-index(#{$size-max}, "px") - 1);
-  }
-  @if str-index(#{$size-min}, "px") != null {
+  @if str-index(#{$value-min}, "px") !=null {
     $size-min: str-slice(#{$size-min}, 1, str-index(#{$size-min}, "px") - 1);
   }
-  @if str-index(#{$w-max}, "px") != null {
-    $w-max: str-slice(#{$w-max}, 1, str-index(#{$w-max}, "px") - 1);
+
+  @if str-index(#{$value-max}, "px") !=null {
+    $size-max: str-slice(#{$size-max}, 1, str-index(#{$size-max}, "px") - 1);
   }
-  @if str-index(#{$w-min}, "px") != null {
+
+  @if str-index(#{$w-min}, "px") !=null {
     $w-min: str-slice(#{$w-min}, 1, str-index(#{$w-min}, "px") - 1);
   }
 
-  $size-max-px: $size-max + px;
-  $size-min-px: $size-min + px;
+  @if str-index(#{$w-max}, "px") !=null {
+    $w-max: str-slice(#{$w-max}, 1, str-index(#{$w-max}, "px") - 1);
+  }
+
+  $size-max-px: $value-max + px;
+  $size-min-px: $value-min + px;
   $w-max-px: $w-max + px;
   $w-min-px: $w-min + px;
-  $desktop-px: $desktop-responsive * 1px;
-  $phone-px: $phone-responsive * 1px;
 
-  $responsive-calc: calc(#{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
+  $responsive-calc: calc(#{$size-min-px} + (#{$value-max} - #{$value-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
 
   $property: "";
 
   @if (map-has-key($property-map, $attr)) {
     $property: map-get($property-map, $attr);
-  } @else {
+  }
+
+  @else {
+    $property: $attr;
+  }
+
+  @if (not $only-med-query) {
+    //impress attribute your styles css
+    #{$property}: $size-min-px;
+  }
+
+  @if ($size-min-px  != $size-max-px) {
+    @media (min-width: #{$w-min-px}) {
+      #{$property}: $responsive-calc;
+    }
+
+    @media (min-width: #{$w-max-px}) {
+      #{$property}: #{$size-max-px};
+    }
+
+  }
+
+}
+
+// How to use:   @include responsive(font-size, 60, 39, 1440, 375) or  @include  responsive(fz, 60, 39, 1440, 375) or  @include  responsive(fz, 60px, 39px, 1440, 375, false)
+// @include responsive(h, 66.11, 30);
+@mixin responsive($attr: "",
+  $value-max: "",
+  $value-min: "",
+  $w-max: $desktop-responsive,
+  $w-min: $phone-responsive,
+  $only-med-query: false) {
+  @if $w-max =="" {
+    $w-max: $desktop-responsive;
+  }
+
+  @if $value-min =="" {
+    $size-min: $value-max;
+  }
+
+  //conditional if attributes exist px
+  @if str-index(#{$value-max}, "px") !=null {
+    $size-max: str-slice(#{$size-max}, 1, str-index(#{$size-max}, "px") - 1);
+  }
+
+  @if str-index(#{$value-min}, "px") !=null {
+    $size-min: str-slice(#{$size-min}, 1, str-index(#{$size-min}, "px") - 1);
+  }
+
+  @if str-index(#{$w-max}, "px") !=null {
+    $w-max: str-slice(#{$w-max}, 1, str-index(#{$w-max}, "px") - 1);
+  }
+
+  @if str-index(#{$w-min}, "px") !=null {
+    $w-min: str-slice(#{$w-min}, 1, str-index(#{$w-min}, "px") - 1);
+  }
+
+  $size-max-px: $value-max + px;
+  $size-min-px: $value-min + px;
+  $w-max-px: $w-max + px;
+  $w-min-px: $w-min + px;
+  $desktop-px: $desktop-responsive * 1px;
+  $phone-px: $phone-responsive * 1px;
+
+  $responsive-calc: calc(#{$size-min-px} + (#{$value-max} - #{$value-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
+
+  $property: "";
+
+  @if (map-has-key($property-map, $attr)) {
+    $property: map-get($property-map, $attr);
+  }
+
+  @else {
     $property: $attr;
   }
 
@@ -194,7 +280,7 @@ $property-map: (
     #{$property}: $size-max-px;
   }
 
-  @if ($size-max-px != $size-min-px) {
+  @if ($size-max-px  !=$size-min-px) {
     @media (max-width: #{$w-max-px}) {
       #{$property}: $responsive-calc;
     }
@@ -214,46 +300,49 @@ $property-map: (
 // w-max: Pantalla maxima y Media query por defecto
 // w-min: Pantalla minima
 // two-mq: Si se requiere para la interrupcion de la segunda media query
-@mixin responsive-mq(
-  $attr: "",
-  $size-max: "",
-  $size-min: "",
+@mixin responsive-mq($attr: "",
+  $value-max: "",
+  $value-min: "",
   $w-max: $desktop-responsive,
   $w-min: $phone-responsive,
-  $two-mq: false
-) {
-  @if $size-min == "" {
-    $size-min: $size-max;
+  $two-mq: false) {
+  @if $value-min =="" {
+    $size-min: $value-max;
   }
 
   //conditional if attributes exist px
-  @if str-index(#{$size-max}, "px") != null {
+  @if str-index(#{$value-max}, "px") !=null {
     $size-max: str-slice(#{$size-max}, 1, str-index(#{$size-max}, "px") - 1);
   }
-  @if str-index(#{$size-min}, "px") != null {
+
+  @if str-index(#{$value-min}, "px") !=null {
     $size-min: str-slice(#{$size-min}, 1, str-index(#{$size-min}, "px") - 1);
   }
-  @if str-index(#{$w-max}, "px") != null {
+
+  @if str-index(#{$w-max}, "px") !=null {
     $w-max: str-slice(#{$w-max}, 1, str-index(#{$w-max}, "px") - 1);
   }
-  @if str-index(#{$w-min}, "px") != null {
+
+  @if str-index(#{$w-min}, "px") !=null {
     $w-min: str-slice(#{$w-min}, 1, str-index(#{$w-min}, "px") - 1);
   }
 
-  $size-max-px: $size-max + px;
-  $size-min-px: $size-min + px;
+  $size-max-px: $value-max + px;
+  $size-min-px: $value-min + px;
   $w-max-px: $w-max + px;
   $w-min-px: $w-min + px;
   $desktop-px: $desktop-responsive * 1px;
   $phone-px: $phone-responsive * 1px;
 
-  $responsive-calc: calc(#{$size-min-px} + (#{$size-max} - #{$size-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
+  $responsive-calc: calc(#{$size-min-px} + (#{$value-max} - #{$value-min}) * ((100vw - #{$w-min-px}) / (#{$w-max} - #{$w-min})));
 
   $property: "";
 
   @if (map-has-key($property-map, $attr)) {
     $property: map-get($property-map, $attr);
-  } @else {
+  }
+
+  @else {
     $property: $attr;
   }
 
@@ -262,7 +351,7 @@ $property-map: (
   }
 
   @if ($two-mq) {
-    @if ($size-max-px != $size-min-px) {
+    @if ($size-max-px  !=$size-min-px) {
       @media (max-width: #{$w-min-px}) {
         #{$property}: #{$size-min-px};
       }
@@ -272,8 +361,8 @@ $property-map: (
 
 // Only Responsive Media query inline
 // How to use:   @include mq(fz, 60, 1440)
-@mixin mq($attr: "", $size: "", $screen: $desktop-responsive) {
-  @if str-index(#{$screen}, "px") != null {
+@mixin mq($attr: "", $value: "", $screen: $desktop-responsive) {
+  @if str-index(#{$screen}, "px") !=null {
     $screen: str-slice(#{$screen}, 1, str-index(#{$screen}, "px") - 1);
   }
 
@@ -281,24 +370,30 @@ $property-map: (
 
   @if (map-has-key($property-map, $attr)) {
     $property: map-get($property-map, $attr);
-  } @else {
+  }
+
+  @else {
     $property: $attr;
   }
 
   $size-px: "";
 
-  @if (type-of($size) == "string") {
-    $size-px: #{$size};
-  } @else {
-    $px: str-index(#{$size}, "px");
-    $em: str-index(#{$size}, "em");
-    $rem: str-index(#{$size}, "rem");
-    $percent: str-index(#{$size}, "%");
+  @if (type-of($value)=="string") {
+    $size-px: #{$value};
+  }
+
+  @else {
+    $px: str-index(#{$value}, "px");
+    $em: str-index(#{$value}, "em");
+    $rem: str-index(#{$value}, "rem");
+    $percent: str-index(#{$value}, "%");
 
     @if ($em or $rem or $percent or $px) {
-      $size-px: #{$size};
-    } @else {
-      $size-px: $size + px;
+      $size-px: #{$value};
+    }
+
+    @else {
+      $size-px: $value +px;
     }
   }
 
@@ -309,8 +404,7 @@ $property-map: (
   }
 }
 
-@mixin padding-responsive(
-  $pt-max: "",
+@mixin padding-responsive($pt-max: "",
   $pt-min: "",
   $pr-max: "",
   $pr-min: "",
@@ -319,24 +413,32 @@ $property-map: (
   $pl-max: "",
   $pl-min: "",
   $w-max: $desktop-responsive,
-  $w-min: $phone-responsive
-) {
-  @if $pt-max!= "" and $pt-min!= "" {
+  $w-min: $phone-responsive) {
+  @if $pt-max  !="" and $pt-min  !="" {
     padding-top: responsive($pt-max, $pt-min, $w-max, $w-min);
-    @if $pr-max!= "" and $pr-min!= "" {
+
+    @if $pr-max  !="" and $pr-min  !="" {
       padding-right: responsive($pr-max, $pr-min, $w-max, $w-min);
-      @if $pb-max!= "" and $pb-min!= "" {
+
+      @if $pb-max  !="" and $pb-min  !="" {
         padding-bottom: responsive($pb-max, $pb-min, $w-max, $w-min);
-        @if $pl-max!= "" and $pl-min!= "" {
+
+        @if $pl-max  !="" and $pl-min  !="" {
           padding-left: responsive($pl-max, $pl-min, $w-max, $w-min);
-        } @else {
+        }
+
+        @else {
           padding-left: responsive($pr-max, $pr-min, $w-max, $w-min);
         }
-      } @else {
+      }
+
+      @else {
         padding-bottom: responsive($pt-max, $pt-min, $w-max, $w-min);
         padding-left: responsive($pr-max, $pr-min, $w-max, $w-min);
       }
-    } @else {
+    }
+
+    @else {
       padding-right: responsive($pt-max, $pt-min, $w-max, $w-min);
       padding-bottom: responsive($pt-max, $pt-min, $w-max, $w-min);
       padding-left: responsive($pt-max, $pt-min, $w-max, $w-min);
@@ -344,8 +446,7 @@ $property-map: (
   }
 }
 
-@mixin margin-responsive(
-  $mt-max: "",
+@mixin margin-responsive($mt-max: "",
   $mt-min: "",
   $mr-max: "",
   $mr-min: "",
@@ -354,24 +455,32 @@ $property-map: (
   $ml-max: "",
   $ml-min: "",
   $w-max: $desktop-responsive,
-  $w-min: $phone-responsive
-) {
-  @if $mt-max!= "" and $mt-min!= "" {
+  $w-min: $phone-responsive) {
+  @if $mt-max  !="" and $mt-min  !="" {
     @include responsive(mt, $mt-max, $mt-min, $w-max, $w-min);
-    @if $mr-max!= "" and $mr-min!= "" {
+
+    @if $mr-max  !="" and $mr-min  !="" {
       @include responsive(mr, $mr-max, $mr-min, $w-max, $w-min);
-      @if $mb-max!= "" and $mb-min!= "" {
+
+      @if $mb-max  !="" and $mb-min  !="" {
         @include responsive(mb, $mb-max, $mb-min, $w-max, $w-min);
-        @if $ml-max!= "" and $ml-min!= "" {
+
+        @if $ml-max  !="" and $ml-min  !="" {
           @include responsive(ml, $ml-max, $ml-min, $w-max, $w-min);
-        } @else {
+        }
+
+        @else {
           @include responsive(ml, $mr-max, $mr-min, $w-max, $w-min);
         }
-      } @else {
+      }
+
+      @else {
         @include responsive(mb, $mt-max, $mt-min, $w-max, $w-min);
         @include responsive(ml, $mr-max, $mr-min, $w-max, $w-min);
       }
-    } @else {
+    }
+
+    @else {
       @include responsive(mr, $mt-max, $mt-min, $w-max, $w-min);
       @include responsive(mb, $mt-max, $mt-min, $w-max, $w-min);
       @include responsive(ml, $mt-max, $mt-min, $w-max, $w-min);

@@ -1,20 +1,52 @@
+@import '../index.scss';
 
-@import '../scss/responsive';
-// myStyle.scss
 h1 {
-  @include responsive(fz, 50, 40);
+  font-size: 50px;
+  @include mq(fz, 50, $desktop-responsive);
+  @include mq(fz, 30, $phone-responsive);
 }
 
 h2 {
-  @include responsive(fz, 40, 30);
+  font-size: 40px;
+  @include mq(fz, 40, $desktop-responsive);
+  @include mq(fz, 20, $phone-responsive);
 }
 
-.miTexto {
+.myTitle {
+  @include responsive(fz, 50, 30);
+}
+
+.mySubtitle {
+  @include responsive(fz, 40, 20);
+}
+
+.myText {
   @include responsive(fz, 28, 16);
 }
 
-.miCaja {
-  @include responsive(w, 500, 50);
-  @include responsive(h, 500, 50);
-  background-color: blue;
+.myBoxNoResponsive {
+  display: block;
+  width: 300px;
+  height: 300px;
+  @include mq(w, 300, $desktop-responsive);
+  @include mq(w, 150, $tablet-responsive);
+  @include mq(w, 80, $phone-responsive);
+  @include mq(h, 300, $desktop-responsive);
+  @include mq(h, 150, $tablet-responsive);
+  @include mq(h, 80, $phone-responsive);
+  background-color: violet;
+}
+
+.myBox {
+  display: block;
+  @include responsive(w, 300, 80);
+  @include responsive(h, 300, 80);
+  background-color: yellow;
+}
+
+.myBox2 {
+  display: block;
+  @include r(w, 80, 300);
+  @include r(h, 80, 300);
+  background-color: rgb(155, 255, 128);
 }

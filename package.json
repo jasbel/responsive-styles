@@ -1,10 +1,10 @@
 {
   "name": "@jasbel/responsive",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "responsive for javascript vanilla, css, scss, react, nextjs and others web project, description: https://github.com/jasbel/responsive-styles#readme",
   "homepage": "https://asbel.dev/",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "tsc",
