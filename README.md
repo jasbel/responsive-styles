@@ -1,7 +1,7 @@
 # @jasbel/responsive [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
 <p align="center">
-    <img src ="https://github.com/jasbel/responsive-styles/blob/master/public/static/responsive.gif" />
+    <img src ="https://raw.githubusercontent.com/jasbel/responsive-styles/master/public/static/responsive.gif" />
 </p>
 
 ## Information
