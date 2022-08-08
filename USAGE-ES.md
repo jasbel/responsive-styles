@@ -187,3 +187,10 @@ body {
   }
 }
 ```
+
+<!-- MUI -->
+Para usar con react mui
+usar
+```js
+... sx={{p: {base: r(16, 24, 'xs', 'xl')}}} ...
+```
